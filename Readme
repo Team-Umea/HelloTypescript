@@ -1,42 +1,38 @@
 Install typescript
 
 1. Run terminal as admin and run:
-   `npm install typescript -g`
+   npm install typescript -g
 
 2. Set up a project folder and run:
-   `npm init -y`
+   npm init -y
 
 3. To install parcel run:
-   `npm install --save-dev parcel`
+   npm install --save-dev parcel
 
 4. Create a tsconfig.json file with the following content:
 
-```
 {
-    "compilerOptions": {
-        "target": "es6",
-        "module": "commonjs",
-        "strict": true,
-        "esModuleInterop": true,
-        "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true
-    },
-    "include": ["*.ts"],
-    "exclude": ["node_modules"]
+"compilerOptions": {
+"target": "es6",
+"module": "commonjs",
+"strict": true,
+"esModuleInterop": true,
+"skipLibCheck": true,
+"forceConsistentCasingInFileNames": true
+},
+"include": ["*.ts"],
+"exclude": ["node_modules"]
 }
-```
 
 5. In package.json update script key to:
 
-```
 "scripts": {
-    "build": "parcel build index.html --out-dir dist --public-url ./",
-    "start": "parcel index.html"
+"build": "parcel build index.html --out-dir dist --public-url ./",
+"start": "parcel index.html"
 }
-```
 
 6. Run the following command to start the dev server:
-   `npm start`
+   npm start
 
 7. For production run:
-   `npm run build`
+   npm run build
