@@ -1,0 +1,16 @@
+{
+  "name": "hellotypescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+"scripts": {
+    "build": "parcel build index.html --out-dir dist --public-url ./",
+    "start": "parcel index.html"
+},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.13.2"
+  }
+}
