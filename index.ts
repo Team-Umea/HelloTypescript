@@ -1,4 +1,4 @@
-const menuBox = document.getElementById("MenuBox")
+const menuBox = document.getElementById("MenuBox") as HTMLElement | null;
 const pizzaButton = document.getElementById("pizzaButton");
 const saladButton = document.getElementById("saladButton");
 const drinkButton = document.getElementById("drinkButton");
@@ -29,7 +29,7 @@ type Drink = {
     description:string,
     price:number,
     imgUrl:string,
-    toppings?:string[],
+    
 }
 
 const apiMap = {
@@ -77,6 +77,8 @@ saladButton?.addEventListener("click", function () {
     
     fetchApi<Salad>("salad")
     .then ((data)=>{
+        console.log(data);
+        
         renderMenu(data)
         
     })
@@ -94,16 +96,22 @@ function renderMenu(data: Pizza[]|Salad[]|Drink[]) {
     menuBox.innerHTML= "";
 
     data.forEach(element => {
-        
+
+
         const divBox = document.createElement("div");
         const foodId = document.createElement("p");
         const foodName = document.createElement("h2");
-        const foodType = document.createElement("p");
+        const foodType = document.createElement("strong");
         const foodDesc = document.createElement("p");
         const foodTopping = document.createElement("p");
         const foodPrice = document.createElement("h4");
         const foodImg = document.createElement("img");
 
+        if ('toppings' in element) {
+            foodTopping.innerText = `Toppings: ${element.toppings?.join(', ') || 'Ingen'}`;
+        } else if ('ingredients' in element) {
+            foodTopping.innerText = `Ingredients: ${element.ingredients?.join(', ') || 'Ingen'}`;
+        } 
 
         foodId.innerText = `👉${String(element.id)}`;
         foodName.innerText = `😋${element.name}😋`;
@@ -112,14 +120,15 @@ function renderMenu(data: Pizza[]|Salad[]|Drink[]) {
         foodPrice.innerText = `Price ${String(element.price)}💲`;
         foodImg.src = `${element.imgUrl}`;
         foodImg.style.width = "300px";
-        
+
+   
 
     
         divBox?.appendChild(foodId);
         divBox?.appendChild(foodName);
         divBox?.appendChild(foodType);
-        divBox?.appendChild(foodDesc);
         divBox?.appendChild(foodTopping);
+        divBox?.appendChild(foodDesc);
         divBox?.appendChild(foodPrice);
         divBox?.appendChild(foodImg);
         menuBox?.appendChild(divBox);
