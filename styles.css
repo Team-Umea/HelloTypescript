@@ -1,0 +1,76 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the content horizontally */
+}
+
+#buttonContainer {
+    display: flex;
+    justify-content: center; /* Center buttons horizontally */
+    margin-bottom: 20px; /* Space between buttons and menu */
+}
+
+button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin: 0 10px; /* Space between buttons */
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+#MenuBox {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
+    gap: 20px; /* Space between grid items */
+    width: 100%; /* Fill the width of the screen */
+    max-width: 1200px; /* Optional: limit maximum width */
+}
+
+div {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    transition: transform 0.3s;
+}
+
+div:hover {
+    transform: scale(1.01);
+}
+
+h2 {
+    color: #333;
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+p {
+    color: #666;
+    margin: 5px 0;
+}
+
+h4 {
+    color: #e74c3c;
+    margin: 10px 0;
+}
+
+img {
+    border-radius: 8px;
+    max-width: 100%;
+    height: auto;
+}
+
+.startPicture {
+    width: 500px;
+}

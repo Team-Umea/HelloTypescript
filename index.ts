@@ -1,4 +1,4 @@
-const mainBox = document.querySelector(".main");
+const menuBox = document.getElementById("MenuBox")
 const pizzaButton = document.getElementById("pizzaButton");
 const saladButton = document.getElementById("saladButton");
 const drinkButton = document.getElementById("drinkButton");
@@ -65,8 +65,6 @@ async function fetchApi<T>(type: keyof typeof apiMap): Promise<T[]> {
         throw error; 
     }
 }
-
-
 pizzaButton?.addEventListener("click", function () {
     
     fetchApi<Pizza>("pizza")
@@ -75,8 +73,25 @@ pizzaButton?.addEventListener("click", function () {
         
     })
 })
+saladButton?.addEventListener("click", function () {
+    
+    fetchApi<Salad>("salad")
+    .then ((data)=>{
+        renderMenu(data)
+        
+    })
+})
+
+drinkButton?.addEventListener("click", function () {
+    
+    fetchApi<Drink>("drink")
+    .then ((data)=>{
+        renderMenu(data)
+        
+    })
+})
 function renderMenu(data: Pizza[]|Salad[]|Drink[]) {
-    document.body.innerHTML= "";
+    menuBox.innerHTML= "";
 
     data.forEach(element => {
         
@@ -90,12 +105,13 @@ function renderMenu(data: Pizza[]|Salad[]|Drink[]) {
         const foodImg = document.createElement("img");
 
 
-        foodId.innerText = String(element.id);
-        foodName.innerText = element.name;
-        foodType.innerText = element.type;
-        foodDesc.innerHTML = element.description;
-        foodPrice.innerText = String(element.price);
-        foodImg.src = element.imgUrl;
+        foodId.innerText = `👉${String(element.id)}`;
+        foodName.innerText = `😋${element.name}😋`;
+        foodType.innerText = `Type - ${element.type}`;
+        foodDesc.innerHTML = `Description - ${element.description}`;
+        foodPrice.innerText = `Price ${String(element.price)}💲`;
+        foodImg.src = `${element.imgUrl}`;
+        foodImg.style.width = "300px";
         
 
     
@@ -106,7 +122,7 @@ function renderMenu(data: Pizza[]|Salad[]|Drink[]) {
         divBox?.appendChild(foodTopping);
         divBox?.appendChild(foodPrice);
         divBox?.appendChild(foodImg);
-        mainBox?.appendChild(divBox);
+        menuBox?.appendChild(divBox);
     });
 }
 
