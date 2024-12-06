@@ -1,14 +1,14 @@
-const menuBox = document.getElementById("MenuBox") as HTMLElement | null;
 const pizzaButton = document.getElementById("pizzaButton");
 const saladButton = document.getElementById("saladButton");
 const drinkButton = document.getElementById("drinkButton");
+const menuBox = document.getElementById("MenuBox") as HTMLElement | null;
 
 type Pizza = {
     id: number,
     name:string,
     type:string,
     description:string,
-    toppings?:string[],
+    toppings:string[],
     price:number,
     imgUrl:string,
 }
@@ -18,7 +18,7 @@ type Salad = {
     name:string,
     type:string,
     description:string,
-    ingredients?:string[],
+    ingredients:string[],
     price: number,
     imgUrl:string,
 }
@@ -93,7 +93,9 @@ drinkButton?.addEventListener("click", function () {
     })
 })
 function renderMenu(data: Pizza[]|Salad[]|Drink[]) {
-    menuBox.innerHTML= "";
+    if (menuBox) {
+        menuBox.innerHTML = ""; 
+    }
 
     data.forEach(element => {
 
@@ -108,9 +110,9 @@ function renderMenu(data: Pizza[]|Salad[]|Drink[]) {
         const foodImg = document.createElement("img");
 
         if ('toppings' in element) {
-            foodTopping.innerText = `Toppings: ${element.toppings?.join(', ') || 'Ingen'}`;
+            foodTopping.innerText = `Toppings: ${element.toppings.join(', ')}`;
         } else if ('ingredients' in element) {
-            foodTopping.innerText = `Ingredients: ${element.ingredients?.join(', ') || 'Ingen'}`;
+            foodTopping.innerText = `Ingredients: ${element.ingredients.join(', ')}`;
         } 
 
         foodId.innerText = `👉${String(element.id)}`;
