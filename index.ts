@@ -68,8 +68,6 @@ function displayMonsters(): void {
                 elements.append(elementTxt);
             });
 
-            console.log(monster.img)
-
             monsterImg.setAttribute("src",`${url}${monster.img}`); 
             monsterImg.setAttribute("alt",monster.name); 
 
