@@ -1,84 +1,113 @@
 main {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
-html{
-    padding:0;
-    margin:0;
+html {
+  padding: 0;
+  margin: 0;
 }
 
 h2 {
-    padding:0;
-    margin:0;
+  padding: 0;
+  margin: 0;
 }
 
-/* General styles for the monster container */
 .monsterContainer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px; /* space between cards */
-    padding: 20px;
-    justify-content: center; /* center cards horizontally */
-    background-color: #f0f0f0; /* light background color */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  justify-content: center;
+  background-color: #f0f0f0;
 }
 
-/* Style for each monster card */
 .monsterCard {
-    background-color: #fff;
-    display: flex;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    width: 250px;
-    padding: 15px;
-    transition: transform .2s;
-    box-shadow: 0 4px 8px #0000001a;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: space-between;
+  background-color: #fff;
+  display: flex;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  width: 300px;
+  height: 400px;
+  padding: 15px;
+  transition: transform 0.2s;
+  box-shadow: 0 4px 8px #0000001a;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  isolation: isolate;
+  position: relative;
 }
 
-/* Hover effect for monster cards */
+.monsterCard > * {
+  position: relative;
+  z-index: 1;
+}
+
+.monsterImg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  object-fit: cover;
+}
+
+.monsterCard::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background-color: black;
+  opacity: 0.7;
+}
+
 .monsterCard:hover {
-    transform: scale(1.05); /* slightly enlarge on hover */
+  transform: scale(1.05);
 }
 
-/* Style for monster names */
 .name {
-    font-size: 1.5em; /* larger font size for names */
-    color: #333; /* dark text color */
+  font-size: 1.5em;
+  color: snow;
 }
 
-/* Style for specifications */
 .specs {
-    font-size: 0.9em; /* smaller font size */
-    color: #666; /* muted text color */
+  font-size: 0.9em;
+  color: snow;
 }
-.statContainer{
-    flex-direction: row;
-    display: flex;
-    flex-wrap: nowrap;
-    align-content: stretch;
-    justify-content: space-between;
-    align-items: flex-end;
-}
-
-/* Style for health, damage, price */
-.health, .damage, .price {
-    font-size: 1.1em; /* slightly larger font */
-    margin: 5px 0; /* vertical margin */
+.statContainer {
+  flex-direction: row;
+  display: flex;
+  flex-wrap: nowrap;
+  align-content: stretch;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
-/* Style for elements */
+.health,
+.damage,
+.price {
+  font-size: 1.1em;
+  margin: 5px 0;
+  color: snow;
+}
+
 .elements {
-    display: flex; /* use flex for layout */
-    flex-wrap: wrap; /* wrap elements */
-    gap: 5px; /* space between elements */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
 }
 
-/* Individual element style */
 .elements p {
-    background-color: #e0e0e0; /* light gray background for elements */
-    border-radius: 5px; /* rounded corners */
-    padding: 5px 10px; /* space inside element */
-    font-size: 0.9em; /* smaller font size */
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 0.9em;
 }

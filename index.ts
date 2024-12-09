@@ -1,13 +1,14 @@
 import {Res, Monster} from "./types";
 
 
-const URL:string = "https://ozzodevmonsterapi.azurewebsites.net/freeMonsters";
+const url:string = "https://ozzodevmonsterapi.azurewebsites.net";
+const freeMonstersEndpoint:string = `${url}/freeMonsters`;
 let monsters: Monster[];
 
 init();
 
 async function init(){
-    await fetchMonsters(URL);
+    await fetchMonsters(freeMonstersEndpoint);
     console.log(monsters);
     displayMonsters();
 }
@@ -36,23 +37,24 @@ function displayMonsters(): void {
     if(monsterContainer){
         monsters.forEach((monster: Monster)=>{
             const monsterCard = document.createElement('div');
-            monsterCard.setAttribute('class', 'monsterCard');
             const name = document.createElement('h2');
-            name.setAttribute('class', 'name');
             const health = document.createElement('p');
-            health.setAttribute('class', 'health');
             const damage = document.createElement('p');
-            damage.setAttribute('class', 'damage');
             const specs = document.createElement('p');
-            specs.setAttribute('class', 'specs');
             const price = document.createElement('p');
-            price.setAttribute('class', 'price');
             const elements = document.createElement('div');
-            elements.setAttribute('class', 'elements');
-
             const statContainer = document.createElement('div');
-            statContainer.setAttribute('class','statContainer')
+            const monsterImg = document.createElement("img"); 
 
+            monsterCard.setAttribute('class', 'monsterCard');
+            name.setAttribute('class', 'name');
+            health.setAttribute('class', 'health');
+            damage.setAttribute('class', 'damage');
+            specs.setAttribute('class', 'specs');
+            price.setAttribute('class', 'price');
+            elements.setAttribute('class', 'elements');
+            statContainer.setAttribute('class','statContainer');
+            monsterImg.setAttribute("class","monsterImg"); 
 
             name.innerText = monster.name;
             specs.innerText = monster.specs;
@@ -66,8 +68,13 @@ function displayMonsters(): void {
                 elements.append(elementTxt);
             });
 
+            console.log(monster.img)
+
+            monsterImg.setAttribute("src",`${url}${monster.img}`); 
+            monsterImg.setAttribute("alt",monster.name); 
+
             statContainer.append(health, damage,price);
-            monsterCard.append(name, elements,specs, statContainer);
+            monsterCard.append(monsterImg,name, elements,specs, statContainer);
             monsterContainer?.append(monsterCard);
         });
     }

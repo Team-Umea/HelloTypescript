@@ -24,5 +24,6 @@ export type Monster = {
     drawnAgainst: string[],
     lostAgainst: string[],
     price: 0,
-    elements:string[]
+    elements:string[],
+    img:string
 }
